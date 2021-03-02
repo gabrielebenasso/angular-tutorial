@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { products } from '../products';
+import { CartService } from '../services/cart.service';
+
 
 @Component({
   selector: 'app-product-details',
@@ -8,8 +10,13 @@ import { products } from '../products';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
+  cartService;
+  addToCart(product) {
+    this.cartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
+  }
   product: any;
-  constructor(private route: ActivatedRoute) { }//iniezione delle dipendenze
+  constructor(private route: ActivatedRoute, private cartServices: CartService) { }//iniezione delle dipendenze
 
   ngOnInit(): void {
     // First get the product id from the current route.
