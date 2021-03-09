@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { Price } from '../models/price';
+import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shipping',
@@ -8,12 +11,20 @@ import { CartService } from '../services/cart.service';
 })
 export class ShippingComponent implements OnInit {
 
+  shippingCosts: Price[] = [];
+
   constructor(private cartService: CartService) {
   }
 
-  shippingCosts = this.cartService.getShippingPrices();
+
 
   ngOnInit(): void {
+    let observable: Observable<Price[]> = this.cartService.getShippingPrices();
+
+    observable.pipe(delay(5000)).subscribe(response => {
+
+      this.shippingCosts = response;
+    })
   }
 
 }
