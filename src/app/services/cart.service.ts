@@ -8,6 +8,12 @@ export class CartService {
 
   addToCart(product: any) {
     this.items.push(product);
+
+    let total = 0;
+
+    this.items.forEach(function (item){
+      total += item;
+    })
   }
 
   getItems() {

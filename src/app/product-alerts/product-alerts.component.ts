@@ -1,7 +1,5 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 @Component({
   selector: 'app-product-alerts',
   templateUrl: './product-alerts.component.html',
